@@ -50,7 +50,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>
             println!("The line that contains your query: \n{}", line.green());
         }
     }else {
-        print!("{}", "Didn't find: ".red());
+        print!("{}", "Couldn't find: ".red());
         println!("{}", config.query);
         print!("{}", "in file: ".red());
         println!("{}", config.file_name);
