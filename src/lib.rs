@@ -14,15 +14,19 @@ pub struct Config
 impl Config 
 {
     //Passes the arguments 
-    pub fn new(arguments: &[String]) -> Result<Config, &str> 
+    pub fn new(mut  arguments: env::Args) -> Result<Config, &'static str> 
     {
-        if arguments.len() < 3 
-        {
-            return Err("Please Provide the needed arguments.");
-        }
+        arguments.next();
 
-        let query = arguments[1].clone();
-        let file_name = arguments[2].clone();
+        let query = match arguments.next(){
+            Some(argument) => argument,
+            None => return Err("Please Provide the query."),
+        };
+        let file_name =  match arguments.next(){
+            Some(argument) => argument,
+            None => return Err("Please Provide the file name."),
+        };
+
         let case_sensitive= env::var("CASE_INSENSITIVE").is_err();
 
         Ok(Config { query, file_name, case_sensitive })
@@ -60,27 +64,20 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>
 }
 
 
-//loops through every line and check if the query is there. Return the lines with query.
+//Iterate through every line and check if the query is there. Return the lines with query.
 pub fn find<'a>
 (query: &'a str, file_content: &'a str) -> Vec<&'a str>
 {
-    let mut results = Vec::new();
-    for line in file_content.lines()
-    {
-        if line.contains(&query)
-        {
-            results.push(line);
-        }
-    }
-
-    results
+    file_content
+            .lines()
+            .filter(|line| line.contains(query))
+            .collect()
 }
 
 //Same as the find function but case insensitive.
 pub fn find_case_insensitive<'a>
 (query: &'a str, file_content: &'a str) -> Vec<&'a str>
 {
-    println!("Case insensitive");
     let query = query.to_lowercase();
     let mut results = Vec::new();
     for line in file_content.lines()

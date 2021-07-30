@@ -6,11 +6,8 @@ use grep_clone::Config;
 
 fn main() 
 {
-    //Taking CLI arguments.
-    let arguments: Vec<String> = env::args().collect();
-
     //Passing the arguments to the Config constructor (Config::new) .
-    let config = Config::new(&arguments).unwrap_or_else(|err| {
+    let config = Config::new(env::args()).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {}", err.red());
         process::exit(0);
     });
