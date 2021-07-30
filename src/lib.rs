@@ -1,7 +1,6 @@
 use std::fs;
 use std::error::Error;
 use std::env;
-use colored::Colorize;
 
 
 // a struct that defines the needed arguments
@@ -51,13 +50,11 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>
     {
         for line in sensitive_or_not
         {
-            println!("The line that contains your query: \n{}", line.green());
+            println!("The line that contains your query: \n{}", line);
         }
     }else {
-        print!("{}", "Couldn't find: ".red());
-        println!("{}", config.query);
-        print!("{}", "in file: ".red());
-        println!("{}", config.file_name);
+        print!("Couldn't find: {}", config.query);
+        print!("in file: {}", config.file_name);
     }
 
     Ok(())

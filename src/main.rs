@@ -1,5 +1,4 @@
 use std::env;
-use colored::Colorize;
 use std::process;
 
 use grep_clone::Config;
@@ -8,7 +7,7 @@ fn main()
 {
     //Passing the arguments to the Config constructor (Config::new) .
     let config = Config::new(env::args()).unwrap_or_else(|err| {
-        eprintln!("Problem parsing arguments: {}", err.red());
+        eprintln!("Problem parsing arguments: {}", err);
         process::exit(0);
     });
 
@@ -19,7 +18,7 @@ fn main()
     //Calling grep_clone::run function and handling the errors.
     match grep_clone::run(config)
     {
-        Err(err) => {eprintln!("An Error ocurred: {}", err.to_string().red()); process::exit(0);},
+        Err(err) => {eprintln!("An Error ocurred: {}", err.to_string()); process::exit(0);},
         Ok(_) => (),
     }
 
