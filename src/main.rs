@@ -10,7 +10,7 @@ fn main() {
         process::exit(0);
     });
 
-    println!("Trying to find: {:?}", config.query);
+    println!("\nTrying to find: {:?}", config.query);
     println!("in file: {:?}\n", config.file_name);
 
     //Calling grep_clone::run function and handling the errors.

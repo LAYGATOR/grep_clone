@@ -51,7 +51,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
         }
     } else {
         print!("Couldn't find: {}", config.query);
-        print!("in file: {}", config.file_name);
+        print!("\nin file: {}", config.file_name);
     }
 
     Ok(())
