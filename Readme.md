@@ -10,7 +10,7 @@ First clone this repo:
 git clone https://github.com/shamlees/grep_clone.git
 ```
 
-Inside the folder use cargo run to compile and open the program. The `[query]` is the word you want to find, and `[file_name]` is the path to your file and its name example: **C:\Documents\test.txt**.
+Inside the folder use cargo run to compile and open the program. The `[query]` is the word you want to find, and `[file_name]` is the path to your file and its name example: **hi C:\Documents\test.txt**.
 
 ```bash
 cargo run [query] [file_name]
