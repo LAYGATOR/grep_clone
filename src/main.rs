@@ -15,7 +15,7 @@ fn main() {
 
     //Calling grep_clone::run function and handling the errors.
     if let Err(err) = grep_clone::run(config) {
-        eprintln!("An Error ocurred: {}", err.to_string());
+        eprintln!("An Error occurred: {}", err.to_string());
         process::exit(0);
     }
 }
